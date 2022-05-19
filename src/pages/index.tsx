@@ -1,17 +1,19 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
 import { Center } from "@chakra-ui/react";
+import { Form } from "../components";
 
 const Home: NextPage = () => {
   return (
-    <Center 
-      w="100vw" 
+    <Center
+      w="100vw"
       h="100vh"
-      backgroundImage={"/bg.jpg"}
+      backgroundColor="gray.200"
       backgroundSize="cover"
+      backgroundBlendMode={"darken"}
     >
-      Olá
+      <Form />
     </Center>
-  )
+  );
 };
 
-export default Home
+export default Home;
