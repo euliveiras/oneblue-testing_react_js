@@ -8,8 +8,9 @@ export const PasswordInput = () => {
         <Icon as={FiLock} color="gray.900" />
       </InputLeftElement>
       <Input
+        size={"lg"}
         variant={"outline"}
-        color={"whiteAlpha.900"}
+        color={"gray.900"}
         focusBorderColor="blue.300"
         bgColor={"blackAlpha.100"}
         borderColor={"whiteAlpha.900"}

@@ -5,14 +5,12 @@ export const NameInput = () => {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents={"none"}>
-        <Icon
-          as={FiUser}
-          color="gray.900"
-        />
+        <Icon as={FiUser} color="gray.900" />
       </InputLeftElement>
       <Input
+        size={"lg"}
         variant={"outline"}
-        color={"whiteAlpha.900"}
+        color={"gray.900"}
         focusBorderColor="blue.300"
         bgColor={"blackAlpha.100"}
         borderColor={"whiteAlpha.900"}
@@ -20,7 +18,7 @@ export const NameInput = () => {
         borderRadius={"lg"}
         type="text"
         placeholder="username"
-        _placeholder={{ color: "gray.900"}}
+        _placeholder={{ color: "gray.900" }}
       />
     </InputGroup>
   );
