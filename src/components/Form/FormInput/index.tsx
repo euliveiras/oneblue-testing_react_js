@@ -30,6 +30,7 @@ export const FormInput: React.FC<FormInputProps> = ({
         type={type}
         placeholder={placeholder}
         _placeholder={{ color: "gray.900" }}
+        value="123123"
       />
     </InputGroup>
   );

@@ -4,24 +4,26 @@ import {
   Link as ChakraLink,
   Text,
   VStack,
+  Box,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useState } from "react";
+import { FormEvent, FormEventHandler, useState } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CircleComponent } from "../Circle";
 import { FormInput } from "./FormInput";
 
 export const Form = () => {
-  const [spinnerIsLoading, setSpinnerIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: any) => {
-    console.log("olá");
-    setSpinnerIsLoading(true);
-    e.preventDefault()
+  const handleSubmit: FormEventHandler = (e) => {
+    setIsSubmitting(true);
+    console.log(e.target);
+    e.preventDefault();
   };
 
   return (
-    <FormControl as={"form"}
+    <Box
+      as={"form"}
       onSubmit={handleSubmit}
       position={"relative"}
       w={"30%"}
@@ -35,10 +37,14 @@ export const Form = () => {
         <Text fontSize="1.8rem" mt="30%">
           Log in
         </Text>
-        <FormInput placeholder="name" icon={FiUser} type="text" />
-        <FormInput placeholder="password" icon={FiLock} type="password" />
+        <FormControl>
+          <FormInput placeholder="name" icon={FiUser} type="text" />
+        </FormControl>
+        <FormControl>
+          <FormInput placeholder="password" icon={FiLock} type="password" />
+        </FormControl>
         <Button
-          isLoading={spinnerIsLoading}
+          isLoading={isSubmitting}
           loadingText="Entrando"
           colorScheme={"blue"}
           variant={"solid"}
@@ -59,6 +65,6 @@ export const Form = () => {
           </ChakraLink>
         </Link>
       </VStack>
-    </FormControl>
+    </Box>
   );
 };
