@@ -1,11 +1,22 @@
 import { Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { FiLock } from "react-icons/fi";
+import { IconType } from "react-icons";
+import { FiUser } from "react-icons/fi";
 
-export const PasswordInput = () => {
+type FormInputProps = {
+  placeholder: string;
+  icon: IconType;
+  type: string;
+};
+
+export const FormInput: React.FC<FormInputProps> = ({
+  icon,
+  placeholder,
+  type,
+}) => {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents={"none"}>
-        <Icon as={FiLock} color="gray.900" />
+        <Icon as={icon} color="gray.900" />
       </InputLeftElement>
       <Input
         size={"lg"}
@@ -16,8 +27,8 @@ export const PasswordInput = () => {
         borderColor={"whiteAlpha.900"}
         border={"2.5px solid"}
         borderRadius={"lg"}
-        type="password"
-        placeholder="password"
+        type={type}
+        placeholder={placeholder}
         _placeholder={{ color: "gray.900" }}
       />
     </InputGroup>
