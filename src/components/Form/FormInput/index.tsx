@@ -1,24 +1,45 @@
 import { Icon, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { useField } from "@unform/core";
+import { RefObject, useEffect, useRef } from "react";
 import { IconType } from "react-icons";
-import { FiUser } from "react-icons/fi";
 
 type FormInputProps = {
   placeholder: string;
   icon: IconType;
   type: string;
+  name: string;
 };
 
 export const FormInput: React.FC<FormInputProps> = ({
   icon,
   placeholder,
   type,
+  name,
 }) => {
+  const inputRef: RefObject<HTMLInputElement> = useRef(null);
+  const { fieldName, defaultValue, registerField } = useField(name);
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef,
+      getValue: (ref) => {
+        return ref.current.value;
+      },
+      setValue: (ref, value) => {
+        ref.current.value = value;
+      },
+      clearValue: (ref) => {
+        ref.current.value = "";
+      },
+    });
+  }, [fieldName, registerField]);
   return (
     <InputGroup>
       <InputLeftElement pointerEvents={"none"}>
         <Icon as={icon} color="gray.900" />
       </InputLeftElement>
       <Input
+        ref={inputRef}
         size={"lg"}
         variant={"outline"}
         color={"gray.900"}
@@ -27,10 +48,10 @@ export const FormInput: React.FC<FormInputProps> = ({
         borderColor={"whiteAlpha.900"}
         border={"2.5px solid"}
         borderRadius={"lg"}
+        name={name}
         type={type}
         placeholder={placeholder}
         _placeholder={{ color: "gray.900" }}
-        value="123123"
       />
     </InputGroup>
   );
