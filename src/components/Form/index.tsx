@@ -6,13 +6,23 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CircleComponent } from "../Circle";
 import { FormInput } from "./FormInput";
 
 export const Form = () => {
+  const [spinnerIsLoading, setSpinnerIsLoading] = useState(false);
+
+  const handleSubmit = async (e: any) => {
+    console.log("olá");
+    setSpinnerIsLoading(true);
+    e.preventDefault()
+  };
+
   return (
-    <FormControl
+    <FormControl as={"form"}
+      onSubmit={handleSubmit}
       position={"relative"}
       w={"30%"}
       minWidth={"320px"}
@@ -28,6 +38,8 @@ export const Form = () => {
         <FormInput placeholder="name" icon={FiUser} type="text" />
         <FormInput placeholder="password" icon={FiLock} type="password" />
         <Button
+          isLoading={spinnerIsLoading}
+          loadingText="Entrando"
           colorScheme={"blue"}
           variant={"solid"}
           w="80%"
