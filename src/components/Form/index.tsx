@@ -1,4 +1,11 @@
-import { Box, Button, FormControl, Text, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  Link as ChakraLink,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import Link from "next/link";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CircleComponent } from "../Circle";
 import { FormInput } from "./FormInput";
@@ -8,6 +15,7 @@ export const Form = () => {
     <FormControl
       position={"relative"}
       w={"30%"}
+      minWidth={"320px"}
       h={"60%"}
       backgroundColor="whiteAlpha.900"
       borderRadius={"base"}
@@ -29,6 +37,15 @@ export const Form = () => {
         >
           log in
         </Button>
+        <Link href="/register" passHref>
+          <ChakraLink
+            color={"gray.500"}
+            textDecoration="none"
+            _hover={{ color: "gray.800" }}
+          >
+            create an account
+          </ChakraLink>
+        </Link>
       </VStack>
     </FormControl>
   );
