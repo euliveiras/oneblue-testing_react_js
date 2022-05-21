@@ -61,12 +61,13 @@ export const Form = ({ formType }: FormProps) => {
                 if (response.data.ok === true) {
                   router.push("/home");
                 }
-              } catch (err) {
+              } catch (err: any) {
+                const message = err.response.data.why;
                 setIsSubmitting(false);
                 toast({
                   position: "top-right",
-                  title: "Erro",
-                  description: "Tente mais tarde",
+                  title: "Error",
+                  description: message,
                   status: "error",
                   duration: 10000,
                   isClosable: true,
