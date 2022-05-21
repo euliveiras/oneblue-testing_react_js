@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Form } from "../components";
+import { Form } from "../components/Form";
 import { Center } from "@chakra-ui/react";
 
 const Home: NextPage = () => {

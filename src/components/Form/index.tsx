@@ -228,4 +228,6 @@ export const Form = ({ formType }: FormProps) => {
       </>
     );
   }
+
+  return null;
 };
