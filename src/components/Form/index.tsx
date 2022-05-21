@@ -43,11 +43,11 @@ export const Form = () => {
       <Box>
         <Box
           position={"relative"}
-          w={"30%"}
-          minWidth={"320px"}
-          h={"70%"}
+          w={"sm"}
+          h={"md"}
           backgroundColor="whiteAlpha.900"
           borderRadius={"base"}
+          boxShadow={"lg"}
         >
           <CircleComponent />
           <Formik
@@ -66,7 +66,7 @@ export const Form = () => {
             {({ handleSubmit, errors, touched }) => (
               <VStack as="form" onSubmit={handleSubmit} spacing={"4"} mx="10%">
                 {/* error unsolved in types of onSubmit */}
-                <Text fontSize="1.8rem" mt="30%">
+                <Text fontSize="2xl" mt="30%" fontWeight={"bold"}>
                   Log in
                 </Text>
                 <FormControl isInvalid={!!errors.user && touched.user}>
