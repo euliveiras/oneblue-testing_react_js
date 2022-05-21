@@ -16,7 +16,11 @@ export const ToastContainer = ({
   useEffect(() => {
     if (isVisible === true) {
       setShowToast(true);
-      setTimeout(() => setShowToast(false), 5000);
+      const timeOut = setTimeout(() => setShowToast(false), 5000);
+      return () => {
+        console.log("Olá");
+        clearTimeout(timeOut);
+      };
     }
   }, [isVisible]);
   return (
@@ -30,14 +34,14 @@ export const ToastContainer = ({
           justify={"center"}
           align={"center"}
           border={".3em solid"}
-          borderColor={true ? "red.300" : "blue.500"}
+          borderColor={error ? "red.300" : "blue.500"}
           borderRadius="md"
           top={0}
           initial={{ right: -120, opacity: 0 }}
-          animate={{ right: 10, top: 10, opacity: 1 }}
+          animate={{ right: 40, top: 10, opacity: 1 }}
           exit={{ right: -120, opacity: 0 }}
         >
-          <Text color={true ? "red.400" : "blue.500"}>{message}</Text>
+          <Text color={error ? "red.400" : "blue.500"}>{message}</Text>
         </Flex>
       )}
     </AnimatePresence>
