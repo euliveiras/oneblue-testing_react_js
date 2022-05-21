@@ -50,16 +50,11 @@ export const Form = () => {
         validationSchema={logInSchema}
       >
         {({ handleSubmit, errors, touched }) => (
-          <VStack
-            as="form"
-            onSubmit={handleSubmit}
-            spacing={"4"}
-            mx="10%"
-          >
+          <VStack as="form" onSubmit={handleSubmit} spacing={"4"} mx="10%">
             <Text fontSize="1.8rem" mt="30%">
               Log in
             </Text>
-            <FormControl isInvalid={!!errors.password && touched.password}>
+            <FormControl isInvalid={!!errors.user && touched.user}>
               <Field
                 as={FormInput}
                 name="user"
