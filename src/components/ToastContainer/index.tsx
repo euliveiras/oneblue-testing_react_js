@@ -2,7 +2,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export const ToastContainer = ({ isVisible }: { isVisible: boolean }) => {
+export const ToastContainer = ({
+  isVisible,
+  message,
+  error,
+}: {
+  isVisible: boolean;
+  message: string;
+  error: boolean;
+}) => {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
@@ -16,20 +24,20 @@ export const ToastContainer = ({ isVisible }: { isVisible: boolean }) => {
       {showToast && (
         <Flex
           as={motion.div}
-          w="160px"
-          h="90px"
-          position={"absolute"}
+          paddingInline={24}
+          paddingBlock={4}
+          pos={"absolute"}
           justify={"center"}
           align={"center"}
-          border={"5px solid"}
-          borderColor={"blue.500"}
-          borderRadius="0.8rem"
+          border={".3em solid"}
+          borderColor={error ? "red.700" : "blue.500"}
+          borderRadius="md"
           top={0}
           initial={{ right: -120, opacity: 0 }}
-          animate={{ right: 0, opacity: 1 }}
+          animate={{ right: 10, opacity: 1 }}
           exit={{ right: -120, opacity: 0 }}
         >
-          <Text>Olá</Text>
+          <Text color={error ? "red.700" : "blue.500"}>{message}</Text>
         </Flex>
       )}
     </AnimatePresence>

@@ -4,22 +4,22 @@ import {
   Text,
   VStack,
   Box,
-  Input,
   FormControl,
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { FormEventHandler, useState } from "react";
+import { useState } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CircleComponent } from "../Circle";
 import { FormInput } from "./FormInput";
 import { ToastContainer } from "../ToastContainer";
 
-type FormData = {
-  user: string;
-  password: string;
+type ToastStateProperties = {
+  message: string;
+  isVisible: boolean;
+  error: boolean;
 };
 
 const logInSchema = Yup.object().shape({
@@ -31,11 +31,15 @@ const logInSchema = Yup.object().shape({
 
 export const Form = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+  const [showToast, setShowToast] = useState<ToastStateProperties>({
+    message: "",
+    isVisible: false,
+    error: false,
+  });
 
   return (
     <>
-      <ToastContainer isVisible={showToast} />
+      <ToastContainer {...showToast} />
       <Box>
         <Box
           position={"relative"}
@@ -51,13 +55,17 @@ export const Form = () => {
             onSubmit={(data) => {
               console.log(data);
               setIsSubmitting(true);
-              setShowToast(true);
-              setTimeout(() => setShowToast(false), 5000);
+              setShowToast({
+                error: true,
+                isVisible: true,
+                message: "Something went wrong!",
+              });
             }}
             validationSchema={logInSchema}
           >
             {({ handleSubmit, errors, touched }) => (
               <VStack as="form" onSubmit={handleSubmit} spacing={"4"} mx="10%">
+                {/* error unsolved in types of onSubmit */}
                 <Text fontSize="1.8rem" mt="30%">
                   Log in
                 </Text>
