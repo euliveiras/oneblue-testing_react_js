@@ -16,6 +16,7 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { CircleComponent } from "../Circle";
 import { FormInput } from "./FormInput";
 import { api } from "../../utils/axios";
+import { Router, useRouter } from "next/router";
 
 type FormProps = {
   formType: "login" | "cadaster";
@@ -33,6 +34,7 @@ const logInSchema = Yup.object().shape({
 
 export const Form = ({ formType }: FormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   const toast = useToast();
 
   if (formType === "login") {
@@ -56,9 +58,10 @@ export const Form = ({ formType }: FormProps) => {
                   name: data.user,
                   password: data.password,
                 });
-                console.log(response);
+                if (response.data.ok === true) {
+                  router.push("/home");
+                }
               } catch (err) {
-                console.log(err);
                 setIsSubmitting(false);
                 toast({
                   position: "top-right",
@@ -156,8 +159,7 @@ export const Form = ({ formType }: FormProps) => {
                   isClosable: true,
                 });
               } catch (err: any) {
-                const message = err.response.data.why
-                setIsSubmitting(false);
+                const message = err.response.data.why;
                 toast({
                   position: "top-right",
                   title: "Error",
