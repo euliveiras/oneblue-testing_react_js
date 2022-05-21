@@ -18,7 +18,6 @@ import { FormInput } from "./FormInput";
 
 type FormProps = {
   formType: "login" | "cadaster";
-  children?: React.ReactNode;
 };
 
 const logInSchema = Yup.object().shape({
@@ -28,7 +27,7 @@ const logInSchema = Yup.object().shape({
     .required("Senha obrigatória"),
 });
 
-export const Form: React.FC<FormProps> = ({ formType, children }) => {
+export const Form = ({ formType }: FormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const toast = useToast();
 
@@ -188,7 +187,7 @@ export const Form: React.FC<FormProps> = ({ formType, children }) => {
                   </FormControl>
                   <Button
                     isLoading={isSubmitting}
-                    loadingText="Entrando"
+                    loadingText="Cadastrando"
                     colorScheme={"blue"}
                     variant={"solid"}
                     w="80%"
