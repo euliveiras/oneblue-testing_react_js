@@ -178,7 +178,7 @@ export const Form = ({ formType }: FormProps) => {
               <VStack as="form" onSubmit={handleSubmit} spacing={"4"} mx="10%">
                 {/* error unsolved in types of onSubmit */}
                 <Text fontSize="2xl" mt="30%" fontWeight={"bold"}>
-                  Cadastrar
+                  Cadastro
                 </Text>
                 <FormControl isInvalid={!!errors.user && touched.user}>
                   <Field

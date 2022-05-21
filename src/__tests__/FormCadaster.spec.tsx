@@ -6,12 +6,12 @@ describe("FormLogin", () => {
   beforeEach(() =>
     render(
       <ChakraProvider>
-        <Form formType="login" />
+        <Form formType="cadaster" />
       </ChakraProvider>
     )
   );
-  it("should render login form", async () => {
-    expect(screen.getByText(/log in/i)).toBeInTheDocument();
+  it("should render cadaster form", async () => {
+    expect(screen.getByText(/cadastro/i)).toBeInTheDocument();
   });
   it("should render an input with placeholder equal to name", () => {
     expect(screen.getByPlaceholderText("name")).toBeInTheDocument();
