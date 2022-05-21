@@ -6,6 +6,7 @@ import {
   Box,
   FormControl,
   FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
@@ -14,13 +15,6 @@ import { useState } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CircleComponent } from "../Circle";
 import { FormInput } from "./FormInput";
-import { ToastContainer } from "../ToastContainer";
-
-type ToastStateProperties = {
-  message: string;
-  isVisible: boolean;
-  error: boolean;
-};
 
 type FormProps = {
   formType: "login" | "cadaster";
@@ -36,16 +30,11 @@ const logInSchema = Yup.object().shape({
 
 export const Form: React.FC<FormProps> = ({ formType, children }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showToast, setShowToast] = useState<ToastStateProperties>({
-    message: "",
-    isVisible: false,
-    error: false,
-  });
+  const toast = useToast();
 
   if (formType === "login") {
     return (
       <>
-        <ToastContainer {...showToast} />
         <Box>
           <Box
             position={"relative"}
@@ -61,10 +50,13 @@ export const Form: React.FC<FormProps> = ({ formType, children }) => {
               onSubmit={(data) => {
                 console.log(data);
                 setIsSubmitting(true);
-                setShowToast({
-                  error: true,
-                  isVisible: true,
-                  message: "Something went wrong!",
+                toast({
+                  position: "top-right",
+                  title: "Erro",
+                  description: "Tente mais tarde",
+                  status: "error",
+                  duration: 10000,
+                  isClosable: true,
                 });
               }}
               validationSchema={logInSchema}
@@ -135,7 +127,6 @@ export const Form: React.FC<FormProps> = ({ formType, children }) => {
   if (formType === "cadaster") {
     return (
       <>
-        <ToastContainer {...showToast} />
         <Box>
           <Box
             position={"relative"}
@@ -151,12 +142,14 @@ export const Form: React.FC<FormProps> = ({ formType, children }) => {
               onSubmit={(data) => {
                 console.log(data);
                 setIsSubmitting(true);
-                setShowToast({
-                  error: false,
-                  isVisible: true,
-                  message: "Cadastro realizado com sucesso!",
+                toast({
+                  position: "top-right",
+                  title: "Conta criada",
+                  description: "A conta foi criada com sucesso",
+                  status: "success",
+                  duration: 10000,
+                  isClosable: true,
                 });
-                setIsSubmitting(false);
               }}
               validationSchema={logInSchema}
             >
