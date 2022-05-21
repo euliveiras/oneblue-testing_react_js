@@ -8,9 +8,7 @@ const Home: NextPage = () => {
       w="100vw"
       h="100vh"
       backgroundColor="gray.200"
-      backgroundSize="cover"
-      backgroundBlendMode={"darken"}
-      position="relative"
+      pos="relative"
     >
       <Form />
     </Center>

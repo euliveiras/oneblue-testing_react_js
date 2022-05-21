@@ -99,7 +99,7 @@ export const Form = () => {
                   type="submit"
                   borderRadius={"base"}
                 >
-                  log in
+                  Entrar
                 </Button>
                 <Link href="/register" passHref>
                   <ChakraLink
@@ -107,7 +107,7 @@ export const Form = () => {
                     textDecoration="none"
                     _hover={{ color: "gray.800" }}
                   >
-                    create an account
+                    crie uma conta
                   </ChakraLink>
                 </Link>
               </VStack>

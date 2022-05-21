@@ -30,14 +30,14 @@ export const ToastContainer = ({
           justify={"center"}
           align={"center"}
           border={".3em solid"}
-          borderColor={error ? "red.700" : "blue.500"}
+          borderColor={true ? "red.300" : "blue.500"}
           borderRadius="md"
           top={0}
           initial={{ right: -120, opacity: 0 }}
-          animate={{ right: 10, opacity: 1 }}
+          animate={{ right: 10, top: 10, opacity: 1 }}
           exit={{ right: -120, opacity: 0 }}
         >
-          <Text color={error ? "red.700" : "blue.500"}>{message}</Text>
+          <Text color={true ? "red.400" : "blue.500"}>{message}</Text>
         </Flex>
       )}
     </AnimatePresence>
