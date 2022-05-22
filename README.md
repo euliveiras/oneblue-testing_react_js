@@ -6,7 +6,7 @@ Repositório contendo a aplicação proposta pelo teste técnico da [oneblue](ht
 
 ## table of contents
 
-[installation](#installation) - [run tests](#run-tests) - [overview](#overview) - [build with](#built-with) - [author](#author)
+[installation](#installation) - [run tests](#run-tests) - [overview](#overview) - [built with](#built-with) - [author](#author)
 
 ## installation
 
