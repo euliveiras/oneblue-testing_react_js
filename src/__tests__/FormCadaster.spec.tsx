@@ -8,6 +8,7 @@ describe("FormLogin", () => {
       <ChakraProvider>
         <Form formType="cadaster" />
       </ChakraProvider>
+      // toast needs the provider
     )
   );
   it("should render cadaster form", async () => {
